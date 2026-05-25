@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Error 404 | Clinical Management System</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/kaixin.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#2a2185',
+                            light: '#3f33ba',
+                            dark: '#1a1456',
+                            soft: '#f0effc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-pattern {
+            background-color: #2a2185;
+            background-image: radial-gradient(circle at center, #3f33ba 0%, #2a2185 100%);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50">
+
+    <div class="container">
+        <div class="navigation active">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="logo-apple"></ion-icon>
+                        </span>
+                        <span class="title">Brand Name</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/KaiXin.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-btn">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">
+                            Ward 
+                            <ion-icon name="chevron-down-outline" style="margin-left: 8px; font-size: 1.1rem; vertical-align: middle;"></ion-icon>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/general.html"><span class="title">General Ward</span></a></li>
+                        <li><a href="/maternity.html"><span class="title">Maternity Ward</span></a></li>
+                        <li><a href="/icu.html"><span class="title">ICU Ward</span></a></li>
+                        <li><a href="/pae.html"><span class="title">Paediatrics Ward</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="hardResetWards()">
+                        <span class="icon">
+                            <ion-icon name="refresh-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Hard Reset Wards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="resetDatabase()">
+                        <span class="icon">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </span>
+                        <span class="title">Reset All Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/about.html">
+                        <span class="icon">
+                            <ion-icon name="help-outline"></ion-icon>
+                        </span>
+                        <span class="title">About</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main active">
+            
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                
+                <div class="user">
+                    <a href="/index.html">
+                        <img src="/images/A.png" alt="User Profile">
+                    </a>
+                </div>
+            </div>
+
+            <header class="hero-pattern pt-32 pb-24 text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="bg-white/20 text-white py-1 px-4 rounded-full text-sm font-semibold tracking-wide uppercase mb-6 inline-block shadow-sm">
+                        Next-Generation Healthcare
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        Clinical Management & <br/> Ward Monitoring System
+                    </h1>
+                    <p class="text-xl md:text-2xl text-brand-soft font-light mb-10 max-w-3xl mx-auto">
+                        Bridging the gap between complex data and intuitive care in high-pressure medical environments.
+                    </p>
+                    <a href="#mission" class="bg-white text-brand font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1 inline-block">
+                        Discover Our Mission
+                    </a>
+                </div>
+            </header>
+
+            <section id="benefits" class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Key Benefits of the Platform</h2>
+                        <div class="w-24 h-1 bg-brand mx-auto rounded"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-14 h-14 bg-brand-soft rounded-lg flex items-center justify-center mb-6 text-brand text-2xl">
+                                <i class="fa-solid fa-bed-pulse"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">Real-Time Ward Orchestration</h3>
+                            <p class="text-gray-600 leading-relaxed">View bed occupancy across General, ICU, Maternity, and Paediatrics wards in a single unified dashboard.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-14 h-14 bg-brand-soft rounded-lg flex items-center justify-center mb-6 text-brand text-2xl">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">Intelligent Patient Priority</h3>
+                            <p class="text-gray-600 leading-relaxed">Our system automatically highlights Critical and Unstable cases, ensuring medical staff can perform triage with 100% accuracy.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-14 h-14 bg-brand-soft rounded-lg flex items-center justify-center mb-6 text-brand text-2xl">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">AI-Enhanced Diagnostics</h3>
+                            <p class="text-gray-600 leading-relaxed">Integrated with Consult AI, our platform helps staff summarize patient history and notes, reducing cognitive load and preventing errors.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition lg:col-start-2">
+                            <div class="w-14 h-14 bg-brand-soft rounded-lg flex items-center justify-center mb-6 text-brand text-2xl">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">Zero-Downtime Data</h3>
+                            <p class="text-gray-600 leading-relaxed">Using optimized local storage, patient records remain accessible and editable even during local network instability. Care never stops.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-14 h-14 bg-brand-soft rounded-lg flex items-center justify-center mb-6 text-brand text-2xl">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">Responsive Bedside Access</h3>
+                            <p class="text-gray-600 leading-relaxed">Built with a "Mobile-First" philosophy, nurses and doctors can update patient status via tablets or mobile devices during active ward rounds.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impact" class="py-20 bg-brand-soft">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col lg:flex-row items-center gap-12">
+                        <div class="lg:w-1/3">
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
+                            <h3 class="text-xl text-brand font-semibold mb-6">SDG 3: Good Health & Well-being</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                We are committed to the United Nations Sustainable Development Goal 3. Our technology is built to hit specific global targets to ensure healthy lives and promote well-being for all at all ages.
+                            </p>
+                        </div>
+                        <div class="lg:w-2/3 space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-brand flex gap-4">
+                                <div class="text-brand mt-1"><i class="fa-solid fa-baby text-2xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Target 3.1 & 3.2 (Maternal & Child Health)</h4>
+                                    <p class="text-gray-600 mt-2">Through our specialized Maternity and Paediatrics modules, we provide the granular monitoring necessary to reduce mortality rates in vulnerable populations.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-brand flex gap-4">
+                                <div class="text-brand mt-1"><i class="fa-solid fa-globe text-2xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Target 3.8 (Universal Health Coverage)</h4>
+                                    <p class="text-gray-600 mt-2">We provide a professional-grade management tool that is lightweight and easy to deploy, helping clinics everywhere digitize their records efficiently.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-brand flex gap-4">
+                                <div class="text-brand mt-1"><i class="fa-solid fa-user-doctor text-2xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Target 3.c (Health Workforce Support)</h4>
+                                    <p class="text-gray-600 mt-2">By automating bed tracking and note-taking, we reduce the administrative "burnout" of healthcare workers, allowing them to focus on patients.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-6">About Team Error 404</h2>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                We are a group of passionate developers and designers dedicated to solving "unsolvable" problems in healthcare. We chose our name because we believe that in a hospital, a <strong>"404 Error" (data not found)</strong> can be the difference between life and death.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Our team specializes in creating high-performance, user-centric web applications that handle sensitive data with speed and security. We combine modern tech stacks like <strong>Tailwind CSS and JavaScript</strong> with human-centric design to build tools that medical professionals actually enjoy using.
+                            </p>
+                        </div>
+
+                        <div id="mission" class="bg-brand text-white rounded-2xl p-10 shadow-2xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 text-9xl">
+                                <i class="fa-solid fa-quote-right"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-6 text-brand-soft">Our Mission</h2>
+                            <blockquote class="text-2xl font-light italic leading-snug mb-8">
+                                "To eliminate information gaps in healthcare by providing every medical professional with the data they need, the moment they need it."
+                            </blockquote>
+                            <p class="text-brand-soft leading-relaxed relative z-10">
+                                Our mission is to ensure that no patient is ever a "missing record." We strive to empower hospitals with digital tools that are as reliable as the doctors and nurses who use them.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            
+        </div>
+    </div>
+
+    <script src="/kaicin.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

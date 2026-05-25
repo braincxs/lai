@@ -1,0 +1,280 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals & Sidebar Variables ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 1000;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Dropdown Menu ===================== */
+.navigation ul li ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: relative; 
+  background: #1a1452; 
+  width: 85%; 
+  margin: 0 auto; 
+  border-radius: 25px; 
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; 
+}
+
+.navigation ul li.dropdown.active ul.dropdown-menu {
+  max-height: 400px;
+  padding: 20px 0;
+  margin-top: 0; 
+}
+.navigation ul li.dropdown.active {
+  padding-bottom: 15px;
+}
+.navigation ul li ul.dropdown-menu li {
+  border-radius: 0; 
+}
+.navigation ul li ul.dropdown-menu li:nth-child(1) {
+  margin-bottom: 0;
+  pointer-events: auto;
+}
+.navigation ul li ul.dropdown-menu li:hover {
+  background-color: transparent; 
+}
+.navigation ul li ul.dropdown-menu li a {
+  height: 45px;
+  line-height: 45px;
+}
+.navigation ul li ul.dropdown-menu li a .title {
+  height: 45px;
+  line-height: 45px;
+  padding-left: 20px;
+}
+.navigation ul li:hover ul.dropdown-menu li a {
+  color: var(--white);
+}
+.navigation ul li ul.dropdown-menu li:hover a {
+  background: rgba(255, 255, 255, 0.1); 
+  color: var(--white);
+}
+.navigation ul li ul.dropdown-menu li a::before,
+.navigation ul li ul.dropdown-menu li a::after {
+  display: none !important;
+}
+
+/* ===================== Main Window ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: #f8fafc;
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===================== Responsive Main/Nav ===================== */
+@media (max-width: 991px) {
+  .navigation { left: -300px; }
+  .navigation.active { width: 300px; left: 0; }
+  .main { width: 100%; left: 0; }
+  .main.active { left: 300px; }
+}
+@media (max-width: 480px) {
+  .user { min-width: 40px; }
+  .navigation { width: 100%; left: -100%; z-index: 1000; }
+  .navigation.active { width: 100%; left: 0; }
+  .toggle { z-index: 10001; }
+  .main.active .toggle { color: #fff; position: fixed; right: 0; left: initial; }
+}
+
+/* ===================== Patient Cards & Modals (Previous File) ===================== */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.patient-card {
+    animation: slideUp 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.status-stable { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+.status-critical { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+.status-recovering { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+.status-discharged { background: #f8fafc; color: #475569; border-color: #e2e8f0; }
+
+#modal-overlay {
+    transition: opacity 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.hidden { display: none; }
+.patient-card .font-medium.text-slate-800 {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.6;
+}

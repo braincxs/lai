@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records Dashboard</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="/Ward.css">
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+    <div class="container">
+        <div class="navigation active">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+                        <span class="title">Brand Name</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/KaiXin.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-btn">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">
+                            Ward 
+                            <ion-icon name="chevron-down-outline" style="margin-left: 8px; font-size: 1.1rem; vertical-align: middle;"></ion-icon>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/general.html"><span class="title">General Ward</span></a></li>
+                        <li><a href="/maternity.html"><span class="title">Maternity Ward</span></a></li>
+                        <li><a href="/icu.html"><span class="title">ICU Ward</span></a></li>
+                        <li><a href="/pae.html"><span class="title">Paediatrics Ward</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="hardResetWards()">
+                        <span class="icon">
+                            <ion-icon name="refresh-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Hard Reset Wards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="resetDatabase()">
+                        <span class="icon"><ion-icon name="trash-outline"></ion-icon></span>
+                        <span class="title">Reset All Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/about.html">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">About</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+        <div class="main active">
+            <div class="topbar border-b border-slate-200 bg-white/60 backdrop-blur-md sticky top-0 z-10">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                
+                <div class="flex-1 px-4">
+                    <h1 class="text-2xl font-bold tracking-tight text-slate-900">Patient Records</h1>
+                    <p id="patient-count" class="text-sm text-slate-500">0 patients on file</p>
+                </div>
+
+                <div class="user">
+                  <a href="/index.html">
+                      <img src="/images/A.png" alt="User Profile">
+                  </a>
+              </div>
+            </div>
+
+            <main id="patient-list" class="max-w-4xl mx-auto px-6 py-8 space-y-4"></main>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-content" class="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden border border-slate-200">
+            <div class="p-6 border-b border-slate-100">
+                <h2 id="modal-title" class="text-xl font-semibold">Edit Patient</h2>
+            </div>
+        
+            <form id="patient-form" class="p-6 space-y-5">
+                <input type="hidden" id="form-id">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium">Full Name</label>
+                        <input type="text" id="form-name" required class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium">Age</label>
+                        <input type="number" id="form-age" min="0" max="150" required class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium">Condition & Clinical Notes</label>
+                    <textarea id="form-condition" required rows="4" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none resize-none"></textarea>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium">Status</label>
+                    <select id="form-status" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="stable">Stable</option>
+                        <option value="critical">Critical</option>
+                        <option value="recovering">Recovering</option>
+                        <option value="discharged">Discharged</option>
+                    </select>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4">
+                    <button type="button" id="close-modal-btn" class="px-4 py-2 border rounded-md hover:bg-slate-50 transition-colors flex items-center gap-2">
+                        <i data-lucide="x" class="h-4 w-4"></i> Cancel
+                    </button>
+                    <button type="submit" id="submit-btn" class="px-4 py-2 bg-[#2a2185] text-white rounded-md hover:bg-blue-800 transition-colors flex items-center gap-2">
+                        <i data-lucide="save" class="h-4 w-4"></i> Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/Ward.js"></script>
+
+    <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="Y-EH0K0sIqB8WZ7A-6VLk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+</body>
+</html>
